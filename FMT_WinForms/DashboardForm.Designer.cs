@@ -1,6 +1,6 @@
 ﻿namespace FMT_WinForms;
 
-partial class Dashboard
+partial class DashboardForm
 {
     /// <summary>
     ///  Required designer variable.
@@ -29,6 +29,7 @@ partial class Dashboard
     private void InitializeComponent()
     {
         cmdEncrypt = new Button();
+        StoriesButton = new Button();
         SuspendLayout();
         // 
         // cmdEncrypt
@@ -41,13 +42,24 @@ partial class Dashboard
         cmdEncrypt.UseVisualStyleBackColor = true;
         cmdEncrypt.Click += cmdEncrypt_Click;
         // 
-        // Dashboard
+        // StoriesButton
+        // 
+        StoriesButton.Location = new Point(12, 47);
+        StoriesButton.Name = "StoriesButton";
+        StoriesButton.Size = new Size(94, 29);
+        StoriesButton.TabIndex = 1;
+        StoriesButton.Text = "Stories";
+        StoriesButton.UseVisualStyleBackColor = true;
+        StoriesButton.Click += StoriesButton_Click;
+        // 
+        // DashboardForm
         // 
         AutoScaleDimensions = new SizeF(8F, 20F);
         AutoScaleMode = AutoScaleMode.Font;
         ClientSize = new Size(800, 450);
+        Controls.Add(StoriesButton);
         Controls.Add(cmdEncrypt);
-        Name = "Dashboard";
+        Name = "DashboardForm";
         Text = "Dashboard";
         ResumeLayout(false);
     }
@@ -55,4 +67,5 @@ partial class Dashboard
     #endregion
 
     private Button cmdEncrypt;
+    private Button StoriesButton;
 }

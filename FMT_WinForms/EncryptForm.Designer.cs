@@ -1,6 +1,6 @@
 ﻿namespace FMT_WinForms;
 
-partial class Encrypt
+partial class EncryptForm
 {
     /// <summary>
     /// Required designer variable.

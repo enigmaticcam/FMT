@@ -2,10 +2,10 @@
 using System.Text;
 
 namespace FMT_WinForms;
-public partial class Encrypt : Form
+public partial class EncryptForm : Form
 {
     private Encrypter _encrypter = new();
-    public Encrypt()
+    public EncryptForm()
     {
         InitializeComponent();
     }
