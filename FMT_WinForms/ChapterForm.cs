@@ -18,7 +18,7 @@ public partial class ChapterForm : Form
 
     private void FillScreen()
     {
-        if (_chapter.Completed(_storyProgress.Progress))
+        if (_chapter.IsCompleted(_storyProgress.Progress))
         {
             CypterTextBox.Text = _chapter.Cypher;
             ChapterTextBox.Text = _encrypter.Encrypt(_chapter.Cypher, _chapter.EncryptedText, false);
@@ -31,7 +31,7 @@ public partial class ChapterForm : Form
     private void DecryptButton_Click(object sender, EventArgs e)
     {
         ChapterTextBox.Text = _encrypter.Encrypt(CypterTextBox.Text, _chapter.EncryptedText, false);
-        if (_chapter.Cypher == CypterTextBox.Text && !_chapter.Completed(_storyProgress.Progress))
+        if (_chapter.Cypher == CypterTextBox.Text && !_chapter.IsCompleted(_storyProgress.Progress))
             _storyProgress.SetProgressNext();
     }
 }

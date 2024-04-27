@@ -8,6 +8,6 @@ public abstract class Story
 
     public bool Completed(decimal progress)
     {
-        return Chapters.Last().Completed(progress);
+        return Chapters.Last().IsCompleted(progress);
     }
 }

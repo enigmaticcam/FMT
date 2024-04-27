@@ -63,4 +63,17 @@ public partial class StoriesForm : Form
         _storyProgress.Reset();
         FillStories();
     }
+
+    private void StoriesListBox_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (StoriesListBox.SelectedIndex == -1)
+        {
+            OpenButton.Enabled = false;
+        } 
+        else
+        {
+            var chapter = GetSelectedChapter();
+            OpenButton.Enabled = chapter.IsCompleted(_storyProgress.Progress) || chapter.IsCurrent(_storyProgress.Progress);
+        }
+    }
 }

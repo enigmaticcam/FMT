@@ -40,9 +40,11 @@ partial class StoriesForm
         StoriesListBox.Name = "StoriesListBox";
         StoriesListBox.Size = new Size(369, 424);
         StoriesListBox.TabIndex = 0;
+        StoriesListBox.SelectedIndexChanged += StoriesListBox_SelectedIndexChanged;
         // 
         // OpenButton
         // 
+        OpenButton.Enabled = false;
         OpenButton.Location = new Point(387, 12);
         OpenButton.Name = "OpenButton";
         OpenButton.Size = new Size(94, 29);

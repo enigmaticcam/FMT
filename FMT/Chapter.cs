@@ -12,7 +12,7 @@ public abstract class Chapter
     public abstract string EncryptedText { get; }
     public abstract string Cypher { get; }
 
-    public bool Completed(decimal progress)
+    public bool IsCompleted(decimal progress)
     {
         return ParentStory.StoryId <= (int)progress && Number <= (int)(progress * 10) % 10;
     }
@@ -23,7 +23,7 @@ public abstract class Chapter
         {
             return $"{ParentStory.Title}: Chapter {Number}";
         } 
-        else if (Completed(progress))
+        else if (IsCompleted(progress))
         {
             return $"(Next story) Chapter {Number}";
         } 
@@ -31,5 +31,10 @@ public abstract class Chapter
         {
             return "Unknown";
         }
+    }
+
+    public bool IsCurrent(decimal progress)
+    {
+        return ParentStory.StoryId == (int)progress && Number == (int)(progress * 10) % 10;
     }
 }

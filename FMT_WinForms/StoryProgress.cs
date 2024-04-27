@@ -19,8 +19,8 @@ public class StoryProgress
 
     public void Reset()
     {
-        Properties.Settings.Default["StoryProgress"] = 0M;
+        Properties.Settings.Default["StoryProgress"] = 1M;
         Properties.Settings.Default.Save();
-        Progress = 0;
+        Progress = 1;
     }
 }
