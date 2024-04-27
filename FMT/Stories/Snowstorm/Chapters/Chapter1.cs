@@ -8,6 +8,10 @@ namespace FMT_Logic.Stories.Snowstorm.Chapters;
 
 public class Chapter1 : Chapter
 {
+    public Chapter1(Story parentStory) : base(parentStory)
+    {
+    }
+
     public override int Number => 1;
 
     public override string Cypher => "N32QH";

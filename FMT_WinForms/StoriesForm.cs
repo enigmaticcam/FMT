@@ -1,26 +1,17 @@
 ﻿using FMT_Logic;
 using FMT_Logic.Stories.Snowstorm;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace FMT_WinForms;
 public partial class StoriesForm : Form
 {
     private List<Story> _stories;
-    private decimal _storyProgress;
+    private StoryProgress _storyProgress = new();
 
     public StoriesForm()
     {
         InitializeComponent();
         LoadStories();
-        LoadSettings();
         FillStories();
     }
 
@@ -32,11 +23,6 @@ public partial class StoriesForm : Form
         };
     }
 
-    private void LoadSettings()
-    {
-        _storyProgress = (decimal)Properties.Settings.Default["StoryProgress"];
-    }
-
     private void FillStories()
     {
         StoriesListBox.Items.Clear();
@@ -44,42 +30,36 @@ public partial class StoriesForm : Form
         {
             foreach (var chapter in story.Chapters.OrderBy(x => x.Number))
             {
-                StoriesListBox.Items.Add(GetChapterDescription(story, chapter));
+                StoriesListBox.Items.Add(chapter.Description(_storyProgress.Progress));
             }
         }
     }
 
-    private string GetChapterDescription(Story story, Chapter chapter)
+    private Chapter GetSelectedChapter()
     {
-        var unlock = Unlocked(story, chapter);
-        if (!unlock.Chapter)
+        int count = 0;
+        foreach (var story in _stories)
         {
-            return "Unknown";
-        } 
-        else if (!unlock.Story)
-        {
-            return $"(Next story) Chapter {chapter.Number}";
-        } 
-        else
-        {
-            return $"{story.Title}: Chatper {chapter.Number}";
+            foreach (var chapter in story.Chapters)
+            {
+                if (count == StoriesListBox.SelectedIndex)
+                    return chapter;
+                count++;
+            }
         }
-    }
-
-    private (bool Chapter, bool Story) Unlocked(Story story, Chapter chapter)
-    {
-        if (story.StoryId <= (int)_storyProgress && chapter.Number <= (int)(_storyProgress * 10) % 10) 
-        {
-            return (true, chapter.Number == story.Chapters.Count);
-        }
-        else
-        {
-            return (false, false);
-        }
+        return null;
     }
 
     private void OpenButton_Click(object sender, EventArgs e)
     {
+        var chapter = GetSelectedChapter();
+        var frm = new ChapterForm(chapter, _storyProgress);
+        frm.ShowDialog();
+    }
 
+    private void ResetProgressButton_Click(object sender, EventArgs e)
+    {
+        _storyProgress.Reset();
+        FillStories();
     }
 }

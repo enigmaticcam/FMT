@@ -30,6 +30,7 @@ partial class StoriesForm
     {
         StoriesListBox = new ListBox();
         OpenButton = new Button();
+        ResetProgressButton = new Button();
         SuspendLayout();
         // 
         // StoriesListBox
@@ -50,11 +51,22 @@ partial class StoriesForm
         OpenButton.UseVisualStyleBackColor = true;
         OpenButton.Click += OpenButton_Click;
         // 
+        // ResetProgressButton
+        // 
+        ResetProgressButton.Location = new Point(665, 12);
+        ResetProgressButton.Name = "ResetProgressButton";
+        ResetProgressButton.Size = new Size(123, 29);
+        ResetProgressButton.TabIndex = 2;
+        ResetProgressButton.Text = "Reset Progress";
+        ResetProgressButton.UseVisualStyleBackColor = true;
+        ResetProgressButton.Click += ResetProgressButton_Click;
+        // 
         // StoriesForm
         // 
         AutoScaleDimensions = new SizeF(8F, 20F);
         AutoScaleMode = AutoScaleMode.Font;
         ClientSize = new Size(800, 450);
+        Controls.Add(ResetProgressButton);
         Controls.Add(OpenButton);
         Controls.Add(StoriesListBox);
         Name = "StoriesForm";
@@ -66,4 +78,5 @@ partial class StoriesForm
 
     private ListBox StoriesListBox;
     private Button OpenButton;
+    private Button ResetProgressButton;
 }
