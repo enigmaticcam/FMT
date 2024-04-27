@@ -55,6 +55,7 @@ public partial class StoriesForm : Form
         var chapter = GetSelectedChapter();
         var frm = new ChapterForm(chapter, _storyProgress);
         frm.ShowDialog();
+        FillStories();
     }
 
     private void ResetProgressButton_Click(object sender, EventArgs e)
