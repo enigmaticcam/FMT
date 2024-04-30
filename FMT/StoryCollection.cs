@@ -1,4 +1,5 @@
-﻿using FMT_Logic.Stories.Snowstorm;
+﻿using FMT_Logic.Stories.LastLeaf;
+using FMT_Logic.Stories.Snowstorm;
 
 namespace FMT_Logic;
 public class StoryCollection
@@ -9,7 +10,8 @@ public class StoryCollection
     {
         var stories = new List<Story>()
         {
-            new SnowstormStory()
+            new SnowstormStory(),
+            new LastLeafStory()
         };
         SetChapters(stories);
     }
