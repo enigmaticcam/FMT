@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FMT_Logic.Stories.Snowstorm.Chapters;
+﻿namespace FMT_Logic.Stories.Snowstorm.Chapters;
 
 public class Chapter1 : Chapter
 {

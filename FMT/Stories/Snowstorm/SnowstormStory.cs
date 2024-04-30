@@ -9,6 +9,9 @@ public class SnowstormStory : Story
 
     public override List<Chapter> Chapters => new List<Chapter>()
     {
-        new Chapter1(this)
+        new Chapter1(this),
+        new Chapter2(this),
+        new Chapter3(this),
+        new Chapter4(this)
     };
 }
