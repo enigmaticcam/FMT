@@ -12,10 +12,9 @@ public partial class ChapterForm : Form
     {
         _chapter = chapter;
         _storyProgress = storyProgress;
+        _storyCollection = storyCollection;
         InitializeComponent();
         FillScreen();
-        _storyProgress = storyProgress;
-        _storyCollection = storyCollection;
     }
 
     private void FillScreen()

@@ -39,7 +39,7 @@ public class StoryCollection
 
     public bool IsCompleted(Chapter chapter, int progress)
     {
-        return _chapters[chapter] <= progress;
+        return _chapters[chapter] < progress;
     }
 
     public bool IsCompleted(Story story, int progress)

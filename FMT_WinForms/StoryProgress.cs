@@ -3,19 +3,18 @@ public class StoryProgress
 {
     public StoryProgress()
     {
-        Progress = (int)Properties.Settings.Default["StoryProgress"];
+        try
+        {
+            Progress = (int)Properties.Settings.Default["StoryProgress"];
+        } 
+        catch
+        {
+            Progress = 0;
+        }
+        
     }
 
     public int Progress { get; private set; }
-
-    private void SetProgress()
-    {
-        int progress = 0;
-        if (int.TryParse(Properties.Settings.Default["StoryProgress"], out progress))
-        {
-
-        }
-    }
 
     public void SetProgressNext()
     {
@@ -28,8 +27,8 @@ public class StoryProgress
 
     public void Reset()
     {
-        Properties.Settings.Default["StoryProgress"] = 1;
+        Properties.Settings.Default["StoryProgress"] = 0;
         Properties.Settings.Default.Save();
-        Progress = 1;
+        Progress = 0;
     }
 }

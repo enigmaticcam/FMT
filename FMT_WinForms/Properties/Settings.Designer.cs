@@ -26,9 +26,9 @@ namespace FMT_WinForms.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public decimal StoryProgress {
+        public int StoryProgress {
             get {
-                return ((decimal)(this["StoryProgress"]));
+                return ((int)(this["StoryProgress"]));
             }
             set {
                 this["StoryProgress"] = value;
