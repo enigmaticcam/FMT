@@ -1,34 +1,42 @@
-﻿namespace FMT_WinForms;
-public class StoryProgress
+﻿using FMT_Logic;
+
+namespace FMT_WinForms;
+
+public class StoryProgress : IStoryProgress
 {
     public StoryProgress()
     {
         try
         {
-            Progress = (int)Properties.Settings.Default["StoryProgress"];
+            var text = (string)Properties.Settings.Default["StoryProgress"];
+            var list = text.Split(',')
+                .Select(x => Convert.ToInt32(x))
+                .ToHashSet();
+            _progress = list;
         } 
         catch
         {
-            Progress = 0;
+            _progress = new HashSet<int>();
         }
         
     }
 
-    public int Progress { get; private set; }
+    private HashSet<int> _progress;
+    public IEnumerable<int> Progress => _progress;
 
-    public void SetProgressNext()
+    public bool Contains(int id) => _progress.Contains(id);
+
+    public void SetProgress(int id)
     {
-        var next = Progress;
-        next += 1;
-        Properties.Settings.Default["StoryProgress"] = next;
+        _progress.Add(id);
+        Properties.Settings.Default["StoryProgress"] = string.Join(",", _progress);
         Properties.Settings.Default.Save();
-        Progress = next;
     }
 
     public void Reset()
     {
-        Properties.Settings.Default["StoryProgress"] = 0;
+        Properties.Settings.Default["StoryProgress"] = "";
         Properties.Settings.Default.Save();
-        Progress = 0;
+        _progress.Clear();
     }
 }

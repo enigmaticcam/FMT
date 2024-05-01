@@ -7,7 +7,7 @@ public class SnowstormStory : Story
 
     public override int StoryId => 0;
 
-    public override List<Chapter> Chapters => new List<Chapter>()
+    protected override List<Chapter> GetChapters() => new List<Chapter>()
     {
         new Chapter1(this),
         new Chapter2(this),

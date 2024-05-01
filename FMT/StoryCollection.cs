@@ -5,8 +5,9 @@ namespace FMT_Logic;
 public class StoryCollection
 {
     private Dictionary<Chapter, int> _chapters;
+    private IStoryProgress _storyProgress;
 
-    public StoryCollection()
+    public StoryCollection(IStoryProgress storyProgress)
     {
         var stories = new List<Story>()
         {
@@ -14,6 +15,7 @@ public class StoryCollection
             new LastLeafStory()
         };
         SetChapters(stories);
+        _storyProgress = storyProgress;
     }
 
     public IEnumerable<Story> Stories => _chapters
@@ -39,28 +41,42 @@ public class StoryCollection
         }
     }
 
-    public bool IsCompleted(Chapter chapter, int progress)
+    public bool IsCompleted(Chapter chapter)
     {
-        return _chapters[chapter] < progress;
+        return _storyProgress.Contains(_chapters[chapter]);
     }
 
-    public bool IsCompleted(Story story, int progress)
+    public bool IsCompleted(Story story)
     {
-        return IsCompleted(story.Chapters.Last(), progress);
+        return IsCompleted(story.Chapters.Last());
     }
 
-    public bool IsCurrent(Chapter chapter, int progress)
+    public bool IsCurrent(Chapter chapter)
     {
-        return _chapters[chapter] == progress;
+        var current = GetCurrentChapter();
+        return current == chapter;
     }
 
-    public string Description(Chapter chapter, int progress)
+    private Chapter GetCurrentChapter()
     {
-        if (IsCompleted(chapter.ParentStory, progress))
+        foreach (var story in Stories)
+        {
+            foreach (var chapter in story.Chapters)
+            {
+                if (!_storyProgress.Contains(_chapters[chapter]))
+                    return chapter;
+            }
+        }
+        return null;
+    }
+
+    public string Description(Chapter chapter)
+    {
+        if (IsCompleted(chapter.ParentStory))
         {
             return $"{chapter.ParentStory.Title}: Chapter {chapter.Number}";
         }
-        else if (IsCompleted(chapter, progress))
+        else if (IsCompleted(chapter))
         {
             return $"(Next story) Chapter {chapter.Number}";
         }
@@ -68,5 +84,10 @@ public class StoryCollection
         {
             return "Incomplete";
         }
+    }
+
+    public void SetProgress(Chapter chapter)
+    {
+        _storyProgress.SetProgress(_chapters[chapter]);
     }
 }

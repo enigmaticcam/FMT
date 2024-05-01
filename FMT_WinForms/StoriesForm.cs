@@ -1,15 +1,15 @@
 ﻿using FMT_Logic;
-using FMT_Logic.Stories.Snowstorm;
-using System.Data;
 
 namespace FMT_WinForms;
 public partial class StoriesForm : Form
 {
-    private StoryCollection _stories = new();
-    private StoryProgress _storyProgress = new();
+    private StoryCollection _stories;
+    private IStoryProgress _storyProgress;
 
     public StoriesForm()
     {
+        _storyProgress = new StoryProgress();
+        _stories = new StoryCollection(_storyProgress);
         InitializeComponent();
         FillStories();
     }
@@ -19,7 +19,7 @@ public partial class StoriesForm : Form
         StoriesListBox.Items.Clear();
         foreach (var chapter in _stories.Chapters)
         {
-            StoriesListBox.Items.Add(_stories.Description(chapter, _storyProgress.Progress));
+            StoriesListBox.Items.Add(_stories.Description(chapter));
         }
     }
 
@@ -38,7 +38,7 @@ public partial class StoriesForm : Form
     private void OpenButton_Click(object sender, EventArgs e)
     {
         var chapter = GetSelectedChapter();
-        var frm = new ChapterForm(chapter, _storyProgress, _stories);
+        var frm = new ChapterForm(chapter, _stories);
         frm.ShowDialog();
         FillStories();
     }
@@ -58,7 +58,7 @@ public partial class StoriesForm : Form
         else
         {
             var chapter = GetSelectedChapter();
-            OpenButton.Enabled = _stories.IsCompleted(chapter, _storyProgress.Progress) || _stories.IsCurrent(chapter, _storyProgress.Progress);
+            OpenButton.Enabled = _stories.IsCompleted(chapter) || _stories.IsCurrent(chapter);
         }
     }
 }
