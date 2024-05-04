@@ -9,13 +9,22 @@ public class StoryCollection
 
     public StoryCollection(IStoryProgress storyProgress)
     {
+        _storyProgress = storyProgress;
         var stories = new List<Story>()
         {
             new SnowstormStory(),
             new LastLeafStory()
         };
-        SetChapters(stories);
-        _storyProgress = storyProgress;
+        var chapters = new List<Chapter>()
+        {
+            stories[1].Chapters[0],
+            stories[1].Chapters[1],
+            stories[0].Chapters[0],
+            stories[0].Chapters[1],
+            stories[0].Chapters[2],
+            stories[0].Chapters[3]
+        };
+        SetChapters(chapters);
     }
 
     public IEnumerable<Story> Stories => _chapters
@@ -27,18 +36,11 @@ public class StoryCollection
         .OrderBy(x => x.Value)
         .Select(x => x.Key);
 
-    private void SetChapters(IEnumerable<Story> stories)
+    private void SetChapters(IEnumerable<Chapter> chapters)
     {
-        _chapters = new Dictionary<Chapter, int>();
-        int order = 0;
-        foreach (var story in stories)
-        {
-            foreach (var chap in story.Chapters)
-            {
-                _chapters.Add(chap, order);
-                order++;
-            }
-        }
+        _chapters = chapters
+            .Select((x, i) => new { x, i })
+            .ToDictionary(x => x.x, x => x.i);
     }
 
     public bool IsCompleted(Chapter chapter)
@@ -48,7 +50,12 @@ public class StoryCollection
 
     public bool IsCompleted(Story story)
     {
-        return IsCompleted(story.Chapters.Last());
+        foreach (var chap in story.Chapters)
+        {
+            if (!IsCompleted(chap))
+                return false;
+        }
+        return true;
     }
 
     public bool IsCurrent(Chapter chapter)
@@ -59,13 +66,10 @@ public class StoryCollection
 
     private Chapter GetCurrentChapter()
     {
-        foreach (var story in Stories)
+        foreach (var chapter in Chapters)
         {
-            foreach (var chapter in story.Chapters)
-            {
-                if (!_storyProgress.Contains(_chapters[chapter]))
-                    return chapter;
-            }
+            if (!_storyProgress.Contains(_chapters[chapter]))
+                return chapter;
         }
         return null;
     }
@@ -78,7 +82,11 @@ public class StoryCollection
         }
         else if (IsCompleted(chapter))
         {
-            return $"(Next story) Chapter {chapter.Number}";
+            return $"Story #{chapter.ParentStory.StoryId}: Chapter {chapter.Number}";
+        }
+        else if (IsCurrent(chapter))
+        {
+            return $"Story #{chapter.ParentStory.StoryId}: Chapter {chapter.Number} (current)";
         }
         else
         {
