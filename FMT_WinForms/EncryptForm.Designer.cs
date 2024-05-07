@@ -41,6 +41,7 @@ partial class EncryptForm
         // 
         // txtPlainText
         // 
+        txtPlainText.AcceptsTab = true;
         txtPlainText.Location = new Point(12, 78);
         txtPlainText.Name = "txtPlainText";
         txtPlainText.Size = new Size(1283, 358);
@@ -85,7 +86,6 @@ partial class EncryptForm
         // 
         txtEncryptedText.Location = new Point(12, 462);
         txtEncryptedText.Name = "txtEncryptedText";
-        txtEncryptedText.ReadOnly = true;
         txtEncryptedText.Size = new Size(1283, 358);
         txtEncryptedText.TabIndex = 4;
         txtEncryptedText.Text = "";
@@ -120,7 +120,7 @@ partial class EncryptForm
         cmdDecrypt.UseVisualStyleBackColor = true;
         cmdDecrypt.Click += cmdDecrypt_Click;
         // 
-        // Encrypt
+        // EncryptForm
         // 
         AutoScaleDimensions = new SizeF(8F, 20F);
         AutoScaleMode = AutoScaleMode.Font;
@@ -134,7 +134,7 @@ partial class EncryptForm
         Controls.Add(txtCypher);
         Controls.Add(label1);
         Controls.Add(txtPlainText);
-        Name = "Encrypt";
+        Name = "EncryptForm";
         Text = "Encrypter";
         ResumeLayout(false);
         PerformLayout();
