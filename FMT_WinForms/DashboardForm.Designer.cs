@@ -30,6 +30,7 @@ partial class DashboardForm
     {
         cmdEncrypt = new Button();
         StoriesButton = new Button();
+        ImageToTextButton = new Button();
         SuspendLayout();
         // 
         // cmdEncrypt
@@ -52,11 +53,22 @@ partial class DashboardForm
         StoriesButton.UseVisualStyleBackColor = true;
         StoriesButton.Click += StoriesButton_Click;
         // 
+        // ImageToTextButton
+        // 
+        ImageToTextButton.Location = new Point(12, 82);
+        ImageToTextButton.Name = "ImageToTextButton";
+        ImageToTextButton.Size = new Size(116, 29);
+        ImageToTextButton.TabIndex = 2;
+        ImageToTextButton.Text = "Image to Text";
+        ImageToTextButton.UseVisualStyleBackColor = true;
+        ImageToTextButton.Click += ImageToTextButton_Click;
+        // 
         // DashboardForm
         // 
         AutoScaleDimensions = new SizeF(8F, 20F);
         AutoScaleMode = AutoScaleMode.Font;
         ClientSize = new Size(800, 450);
+        Controls.Add(ImageToTextButton);
         Controls.Add(StoriesButton);
         Controls.Add(cmdEncrypt);
         Name = "DashboardForm";
@@ -68,4 +80,5 @@ partial class DashboardForm
 
     private Button cmdEncrypt;
     private Button StoriesButton;
+    private Button ImageToTextButton;
 }
