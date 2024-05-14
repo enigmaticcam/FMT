@@ -37,6 +37,8 @@ partial class EncryptForm
         cmdRandomizeCypher = new Button();
         cmdEncrypt = new Button();
         cmdDecrypt = new Button();
+        EncrypterTypeComboBox = new ComboBox();
+        label4 = new Label();
         SuspendLayout();
         // 
         // txtPlainText
@@ -120,11 +122,32 @@ partial class EncryptForm
         cmdDecrypt.UseVisualStyleBackColor = true;
         cmdDecrypt.Click += cmdDecrypt_Click;
         // 
+        // EncrypterTypeComboBox
+        // 
+        EncrypterTypeComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+        EncrypterTypeComboBox.FormattingEnabled = true;
+        EncrypterTypeComboBox.Items.AddRange(new object[] { "Version1", "Version2" });
+        EncrypterTypeComboBox.Location = new Point(1144, 15);
+        EncrypterTypeComboBox.Name = "EncrypterTypeComboBox";
+        EncrypterTypeComboBox.Size = new Size(151, 28);
+        EncrypterTypeComboBox.TabIndex = 9;
+        // 
+        // label4
+        // 
+        label4.AutoSize = true;
+        label4.Location = new Point(1032, 18);
+        label4.Name = "label4";
+        label4.Size = new Size(106, 20);
+        label4.TabIndex = 10;
+        label4.Text = "Encrypter Type";
+        // 
         // EncryptForm
         // 
         AutoScaleDimensions = new SizeF(8F, 20F);
         AutoScaleMode = AutoScaleMode.Font;
         ClientSize = new Size(1324, 911);
+        Controls.Add(label4);
+        Controls.Add(EncrypterTypeComboBox);
         Controls.Add(cmdDecrypt);
         Controls.Add(cmdEncrypt);
         Controls.Add(cmdRandomizeCypher);
@@ -151,4 +174,6 @@ partial class EncryptForm
     private Button cmdRandomizeCypher;
     private Button cmdEncrypt;
     private Button cmdDecrypt;
+    private ComboBox EncrypterTypeComboBox;
+    private Label label4;
 }

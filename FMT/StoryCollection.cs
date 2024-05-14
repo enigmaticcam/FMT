@@ -1,4 +1,7 @@
-﻿using FMT_Logic.Stories.LastLeaf;
+﻿using FMT_Logic.Stories.GluttonsSea;
+using FMT_Logic.Stories.LastLeaf;
+using FMT_Logic.Stories.NewRoyalPainter;
+using FMT_Logic.Stories.PrinceDeepWater;
 using FMT_Logic.Stories.Snowstorm;
 
 namespace FMT_Logic;
@@ -13,16 +16,29 @@ public class StoryCollection
         var stories = new List<Story>()
         {
             new SnowstormStory(),
-            new LastLeafStory()
+            new LastLeafStory(),
+            new NewRoyalPainterStory(),
+            new GluttonsSeaStory(),
+            new PrinceDeepWaterStory()
         };
         var chapters = new List<Chapter>()
         {
-            stories[1].Chapters[0],
-            stories[1].Chapters[1],
             stories[0].Chapters[0],
             stories[0].Chapters[1],
             stories[0].Chapters[2],
-            stories[0].Chapters[3]
+            stories[0].Chapters[3],
+            stories[1].Chapters[0],
+            stories[1].Chapters[1],
+            stories[2].Chapters[0],
+            stories[2].Chapters[1],
+            stories[2].Chapters[2],
+            stories[3].Chapters[0],
+            stories[3].Chapters[1],
+            stories[3].Chapters[2],
+            stories[4].Chapters[0],
+            stories[4].Chapters[1],
+            stories[4].Chapters[2],
+            stories[4].Chapters[3]
         };
         SetChapters(chapters);
     }

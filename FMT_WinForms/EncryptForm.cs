@@ -1,27 +1,40 @@
 ﻿using FMT_Logic;
-using System.Text;
+using FMT_Logic.Encrypters;
 
 namespace FMT_WinForms;
 public partial class EncryptForm : Form
 {
-    private Encrypter _encrypter = new();
     public EncryptForm()
     {
         InitializeComponent();
     }
 
+    private Encrypter GetEncrypter(int selectedIndex)
+        => selectedIndex switch
+        {
+            0 => new Version1(),
+            1 => new Version2(),
+            _ => null
+        };
+
     private void cmdRandomizeCypher_Click(object sender, EventArgs e)
     {
-        txtCypher.Text = _encrypter.RandomCypher();
+        var encrypter = GetEncrypter(EncrypterTypeComboBox.SelectedIndex);
+        if (encrypter != null)
+            txtCypher.Text = encrypter.RandomCypher();
     }
 
     private void cmdEncrypt_Click(object sender, EventArgs e)
     {
-        txtEncryptedText.Text = _encrypter.Encrypt(txtCypher.Text, txtPlainText.Text, true);
+        var encrypter = GetEncrypter(EncrypterTypeComboBox.SelectedIndex);
+        if (encrypter != null)
+            txtEncryptedText.Text = encrypter.Encrypt(txtCypher.Text, txtPlainText.Text, true);
     }
 
     private void cmdDecrypt_Click(object sender, EventArgs e)
     {
-        txtPlainText.Text = _encrypter.Encrypt(txtCypher.Text, txtEncryptedText.Text, false);
+        var encrypter = GetEncrypter(EncrypterTypeComboBox.SelectedIndex);
+        if (encrypter != null)
+            txtPlainText.Text = encrypter.Encrypt(txtCypher.Text, txtEncryptedText.Text, false);
     }
 }

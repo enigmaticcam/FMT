@@ -5,7 +5,7 @@ public partial class ChapterForm : Form
 {
     private Chapter _chapter;
     private StoryCollection _storyCollection;
-    private Encrypter _encrypter = new();
+    private Encrypter _encrypter = Factory.CreateEncrypter();
 
     public ChapterForm(Chapter chapter, StoryCollection storyCollection)
     {

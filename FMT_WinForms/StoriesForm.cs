@@ -21,6 +21,7 @@ public partial class StoriesForm : Form
         {
             StoriesListBox.Items.Add(_stories.Description(chapter));
         }
+        OpenButton.Enabled = false;
     }
 
     private Chapter GetSelectedChapter()
@@ -48,7 +49,7 @@ public partial class StoriesForm : Form
         _storyProgress.Reset();
         FillStories();
     }
-
+    
     private void StoriesListBox_SelectedIndexChanged(object sender, EventArgs e)
     {
         if (StoriesListBox.SelectedIndex == -1)
