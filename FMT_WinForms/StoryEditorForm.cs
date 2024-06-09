@@ -83,6 +83,7 @@ public partial class StoryEditorForm : Form
         if (StoryListBox.SelectedIndex > -1)
         {
             SelectStory(_save.Stories[StoryListBox.SelectedIndex]);
+            SelectChapter();
         } else
         {
             SelectStory();
