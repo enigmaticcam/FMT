@@ -31,6 +31,7 @@ partial class DashboardForm
         cmdEncrypt = new Button();
         StoriesButton = new Button();
         ImageToTextButton = new Button();
+        StoryEditorButton = new Button();
         SuspendLayout();
         // 
         // cmdEncrypt
@@ -63,11 +64,22 @@ partial class DashboardForm
         ImageToTextButton.UseVisualStyleBackColor = true;
         ImageToTextButton.Click += ImageToTextButton_Click;
         // 
+        // StoryEditorButton
+        // 
+        StoryEditorButton.Location = new Point(12, 117);
+        StoryEditorButton.Name = "StoryEditorButton";
+        StoryEditorButton.Size = new Size(116, 29);
+        StoryEditorButton.TabIndex = 3;
+        StoryEditorButton.Text = "Story Editor";
+        StoryEditorButton.UseVisualStyleBackColor = true;
+        StoryEditorButton.Click += StoryEditorButton_Click;
+        // 
         // DashboardForm
         // 
         AutoScaleDimensions = new SizeF(8F, 20F);
         AutoScaleMode = AutoScaleMode.Font;
         ClientSize = new Size(800, 450);
+        Controls.Add(StoryEditorButton);
         Controls.Add(ImageToTextButton);
         Controls.Add(StoriesButton);
         Controls.Add(cmdEncrypt);
@@ -81,4 +93,5 @@ partial class DashboardForm
     private Button cmdEncrypt;
     private Button StoriesButton;
     private Button ImageToTextButton;
+    private Button StoryEditorButton;
 }

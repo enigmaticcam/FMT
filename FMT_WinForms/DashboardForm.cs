@@ -26,4 +26,10 @@ public partial class DashboardForm : Form
         var imageToText = new ImageToTextForm();
         imageToText.Show();
     }
+
+    private void StoryEditorButton_Click(object sender, EventArgs e)
+    {
+        var editor = new StoryEditorForm();
+        editor.Show();
+    }
 }
