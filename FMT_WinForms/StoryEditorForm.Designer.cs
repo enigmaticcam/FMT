@@ -44,6 +44,7 @@ partial class StoryEditorForm
         DeleteStoryButton = new Button();
         DeleteChapterButton = new Button();
         NewButton = new Button();
+        EditTextButton = new Button();
         SuspendLayout();
         // 
         // StoryListBox
@@ -165,7 +166,7 @@ partial class StoryEditorForm
         ChapterTextBox.Enabled = false;
         ChapterTextBox.Location = new Point(371, 387);
         ChapterTextBox.Name = "ChapterTextBox";
-        ChapterTextBox.Size = new Size(353, 171);
+        ChapterTextBox.Size = new Size(353, 136);
         ChapterTextBox.TabIndex = 12;
         ChapterTextBox.Text = "";
         ChapterTextBox.Validating += ChapterTextBox_Validating;
@@ -202,11 +203,23 @@ partial class StoryEditorForm
         NewButton.UseVisualStyleBackColor = true;
         NewButton.Click += NewButton_Click;
         // 
+        // EditTextButton
+        // 
+        EditTextButton.Enabled = false;
+        EditTextButton.Location = new Point(630, 529);
+        EditTextButton.Name = "EditTextButton";
+        EditTextButton.Size = new Size(94, 29);
+        EditTextButton.TabIndex = 16;
+        EditTextButton.Text = "Edit Text...";
+        EditTextButton.UseVisualStyleBackColor = true;
+        EditTextButton.Click += EditTextButton_Click;
+        // 
         // StoryEditorForm
         // 
         AutoScaleDimensions = new SizeF(8F, 20F);
         AutoScaleMode = AutoScaleMode.Font;
         ClientSize = new Size(774, 570);
+        Controls.Add(EditTextButton);
         Controls.Add(NewButton);
         Controls.Add(DeleteChapterButton);
         Controls.Add(DeleteStoryButton);
@@ -247,4 +260,5 @@ partial class StoryEditorForm
     private Button DeleteStoryButton;
     private Button DeleteChapterButton;
     private Button NewButton;
+    private Button EditTextButton;
 }

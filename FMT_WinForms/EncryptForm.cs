@@ -4,10 +4,17 @@ using FMT_Logic.Encrypters;
 namespace FMT_WinForms;
 public partial class EncryptForm : Form
 {
-    public EncryptForm()
+    public EncryptForm(string encryptedText = null)
     {
         InitializeComponent();
+        if (!string.IsNullOrEmpty(encryptedText))
+        {
+            txtEncryptedText.Text = encryptedText;
+        }
     }
+
+    public string EncryptedText { get; set; }
+    public string PlainText { get; set; }
 
     private Encrypter GetEncrypter(int selectedIndex)
         => selectedIndex switch
@@ -36,5 +43,16 @@ public partial class EncryptForm : Form
         var encrypter = GetEncrypter(EncrypterTypeComboBox.SelectedIndex);
         if (encrypter != null)
             txtPlainText.Text = encrypter.Encrypt(txtCypher.Text, txtEncryptedText.Text, false);
+    }
+
+    private void CloseButton_Click(object sender, EventArgs e)
+    {
+        Close();
+    }
+
+    private void EncryptForm_FormClosing(object sender, FormClosingEventArgs e)
+    {
+        EncryptedText = txtEncryptedText.Text;
+        PlainText = txtPlainText.Text;
     }
 }

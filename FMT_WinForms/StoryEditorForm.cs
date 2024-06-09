@@ -57,6 +57,7 @@ public partial class StoryEditorForm : Form
         ChapterNumberTextBox.Enabled = isSelecting;
         ChapterTextBox.Text = isSelecting ? chapter.EncryptedText : "";
         ChapterTextBox.Enabled = isSelecting;
+        EditTextButton.Enabled = isSelecting;
     }
 
     private void SelectSave()
@@ -186,5 +187,13 @@ public partial class StoryEditorForm : Form
         };
         _selectedStory.Chapters.Add(chapter);
         ChapterListBox.Items.Add(chapter.ChapterNumber);
+    }
+
+    private void EditTextButton_Click(object sender, EventArgs e)
+    {
+        var frm = new EncryptForm(_selectedChapter.EncryptedText);
+        frm.ShowDialog();
+        _selectedChapter.EncryptedText = frm.EncryptedText;
+        ChapterTextBox.Text = frm.EncryptedText;
     }
 }

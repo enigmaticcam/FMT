@@ -39,6 +39,7 @@ partial class EncryptForm
         cmdDecrypt = new Button();
         EncrypterTypeComboBox = new ComboBox();
         label4 = new Label();
+        CloseButton = new Button();
         SuspendLayout();
         // 
         // txtPlainText
@@ -141,11 +142,22 @@ partial class EncryptForm
         label4.TabIndex = 10;
         label4.Text = "Encrypter Type";
         // 
+        // CloseButton
+        // 
+        CloseButton.Location = new Point(1211, 870);
+        CloseButton.Name = "CloseButton";
+        CloseButton.Size = new Size(101, 29);
+        CloseButton.TabIndex = 11;
+        CloseButton.Text = "Close";
+        CloseButton.UseVisualStyleBackColor = true;
+        CloseButton.Click += CloseButton_Click;
+        // 
         // EncryptForm
         // 
         AutoScaleDimensions = new SizeF(8F, 20F);
         AutoScaleMode = AutoScaleMode.Font;
         ClientSize = new Size(1324, 911);
+        Controls.Add(CloseButton);
         Controls.Add(label4);
         Controls.Add(EncrypterTypeComboBox);
         Controls.Add(cmdDecrypt);
@@ -159,6 +171,7 @@ partial class EncryptForm
         Controls.Add(txtPlainText);
         Name = "EncryptForm";
         Text = "Encrypter";
+        FormClosing += EncryptForm_FormClosing;
         ResumeLayout(false);
         PerformLayout();
     }
@@ -176,4 +189,5 @@ partial class EncryptForm
     private Button cmdDecrypt;
     private ComboBox EncrypterTypeComboBox;
     private Label label4;
+    private Button CloseButton;
 }
