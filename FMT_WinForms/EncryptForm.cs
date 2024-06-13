@@ -24,6 +24,13 @@ public partial class EncryptForm : Form
             _ => null
         };
 
+    private void Encrypt()
+    {
+        var encrypter = GetEncrypter(EncrypterTypeComboBox.SelectedIndex);
+        if (encrypter != null)
+            txtEncryptedText.Text = encrypter.Encrypt(txtCypher.Text, txtPlainText.Text, true);
+    }
+
     private void cmdRandomizeCypher_Click(object sender, EventArgs e)
     {
         var encrypter = GetEncrypter(EncrypterTypeComboBox.SelectedIndex);
@@ -33,9 +40,7 @@ public partial class EncryptForm : Form
 
     private void cmdEncrypt_Click(object sender, EventArgs e)
     {
-        var encrypter = GetEncrypter(EncrypterTypeComboBox.SelectedIndex);
-        if (encrypter != null)
-            txtEncryptedText.Text = encrypter.Encrypt(txtCypher.Text, txtPlainText.Text, true);
+        Encrypt();   
     }
 
     private void cmdDecrypt_Click(object sender, EventArgs e)
@@ -47,6 +52,7 @@ public partial class EncryptForm : Form
 
     private void CloseButton_Click(object sender, EventArgs e)
     {
+        Encrypt();
         Close();
     }
 
