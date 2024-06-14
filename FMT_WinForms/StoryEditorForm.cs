@@ -194,7 +194,10 @@ public partial class StoryEditorForm : Form
     {
         var frm = new EncryptForm(_selectedChapter.EncryptedText);
         frm.ShowDialog();
-        _selectedChapter.EncryptedText = frm.EncryptedText;
-        ChapterTextBox.Text = frm.EncryptedText;
+        if (frm.DialogResult == DialogResult.OK)
+        {
+            _selectedChapter.EncryptedText = frm.EncryptedText;
+            ChapterTextBox.Text = frm.EncryptedText;
+        }
     }
 }

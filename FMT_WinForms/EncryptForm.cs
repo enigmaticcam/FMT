@@ -40,7 +40,7 @@ public partial class EncryptForm : Form
 
     private void cmdEncrypt_Click(object sender, EventArgs e)
     {
-        Encrypt();   
+        Encrypt();
     }
 
     private void cmdDecrypt_Click(object sender, EventArgs e)
@@ -52,13 +52,25 @@ public partial class EncryptForm : Form
 
     private void CloseButton_Click(object sender, EventArgs e)
     {
-        Encrypt();
-        Close();
+
     }
 
     private void EncryptForm_FormClosing(object sender, FormClosingEventArgs e)
     {
         EncryptedText = txtEncryptedText.Text;
         PlainText = txtPlainText.Text;
+    }
+
+    private void SaveButton_Click(object sender, EventArgs e)
+    {
+        DialogResult = DialogResult.OK;
+        Encrypt();
+        Close();
+    }
+
+    private void CancelButton_Click(object sender, EventArgs e)
+    {
+        DialogResult = DialogResult.Cancel;
+        Close();
     }
 }

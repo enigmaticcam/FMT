@@ -39,7 +39,8 @@ partial class EncryptForm
         cmdDecrypt = new Button();
         EncrypterTypeComboBox = new ComboBox();
         label4 = new Label();
-        CloseButton = new Button();
+        SaveButton = new Button();
+        CancelButton = new Button();
         SuspendLayout();
         // 
         // txtPlainText
@@ -142,22 +143,33 @@ partial class EncryptForm
         label4.TabIndex = 10;
         label4.Text = "Encrypter Type";
         // 
-        // CloseButton
+        // SaveButton
         // 
-        CloseButton.Location = new Point(1211, 870);
-        CloseButton.Name = "CloseButton";
-        CloseButton.Size = new Size(101, 29);
-        CloseButton.TabIndex = 11;
-        CloseButton.Text = "Close";
-        CloseButton.UseVisualStyleBackColor = true;
-        CloseButton.Click += CloseButton_Click;
+        SaveButton.Location = new Point(1211, 870);
+        SaveButton.Name = "SaveButton";
+        SaveButton.Size = new Size(101, 29);
+        SaveButton.TabIndex = 11;
+        SaveButton.Text = "Save";
+        SaveButton.UseVisualStyleBackColor = true;
+        SaveButton.Click += SaveButton_Click;
+        // 
+        // CancelButton
+        // 
+        CancelButton.Location = new Point(1104, 870);
+        CancelButton.Name = "CancelButton";
+        CancelButton.Size = new Size(101, 29);
+        CancelButton.TabIndex = 12;
+        CancelButton.Text = "Cancel";
+        CancelButton.UseVisualStyleBackColor = true;
+        CancelButton.Click += CancelButton_Click;
         // 
         // EncryptForm
         // 
         AutoScaleDimensions = new SizeF(8F, 20F);
         AutoScaleMode = AutoScaleMode.Font;
         ClientSize = new Size(1324, 911);
-        Controls.Add(CloseButton);
+        Controls.Add(CancelButton);
+        Controls.Add(SaveButton);
         Controls.Add(label4);
         Controls.Add(EncrypterTypeComboBox);
         Controls.Add(cmdDecrypt);
@@ -189,5 +201,6 @@ partial class EncryptForm
     private Button cmdDecrypt;
     private ComboBox EncrypterTypeComboBox;
     private Label label4;
-    private Button CloseButton;
+    private Button SaveButton;
+    private Button CancelButton;
 }
