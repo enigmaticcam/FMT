@@ -11,6 +11,7 @@ public partial class EncryptForm : Form
         {
             txtEncryptedText.Text = encryptedText;
         }
+        EncrypterTypeComboBox.SelectedIndex = 1;
     }
 
     public string EncryptedText { get; set; }
@@ -48,11 +49,6 @@ public partial class EncryptForm : Form
         var encrypter = GetEncrypter(EncrypterTypeComboBox.SelectedIndex);
         if (encrypter != null)
             txtPlainText.Text = encrypter.Encrypt(txtCypher.Text, txtEncryptedText.Text, false);
-    }
-
-    private void CloseButton_Click(object sender, EventArgs e)
-    {
-
     }
 
     private void EncryptForm_FormClosing(object sender, FormClosingEventArgs e)

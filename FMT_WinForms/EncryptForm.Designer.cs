@@ -168,6 +168,7 @@ partial class EncryptForm
         AutoScaleDimensions = new SizeF(8F, 20F);
         AutoScaleMode = AutoScaleMode.Font;
         ClientSize = new Size(1324, 911);
+        ControlBox = false;
         Controls.Add(CancelButton);
         Controls.Add(SaveButton);
         Controls.Add(label4);
